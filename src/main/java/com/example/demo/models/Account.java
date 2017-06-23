@@ -90,14 +90,15 @@ public class Account {
 
     public BigDecimal depositFunds(BigDecimal amt)
     {
-        balance.add(amt);
+        balance=balance.add(amt);
         return balance;
     }
     public BigDecimal withdrawFunds(BigDecimal amt)
     {
-        balance.subtract(amt);
+        balance=balance.subtract(amt);
         return balance;
     }
+
 
     /*public BigDecimal getBalance2()
     {

@@ -40,7 +40,7 @@
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/deposit">Deposit</a></li>
                 <li><a href="/withdraw">Withdraw</a></li>
-                <li><a href="/everything">Transaction History</a></li>
+                <li><a href="/transactions">Transaction History</a></li>
 
             </ul>
         </div><!--/.nav-collapse -->
@@ -56,11 +56,6 @@
 
 
     <form action="#" th:action="@{/deposit}" th:object="${transaction}" method="post">
-        <div class="form-group">
-            <label for="acctNum">Enter Account Number</label>
-            <input type="text" class="form-control" th:field="*{acctNum}" id="acctNum" placeholder="Account Number"/>
-            <p><span th:if="${#fields.hasErrors('acctNum')}" th:errors="*{acctNum}">acct Error</span></p>
-        </div>
 
         <div class="form-group">
             <label for="amt">Enter Amount to Deposit</label>
