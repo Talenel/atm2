@@ -13,43 +13,46 @@
 <br/>
 <br/>
 <br/>
-<div class="container">
+<div class="wrapper">
+    <div class="section">
+        <div class="container">
+
+            <div th:if="${transList!=null}">
+                <h1>Transaction List</h1>
+                <br/>
+                <h3 th:text="${'Balance: '+ {account.balance}}"></h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID #</th>
+                        <th>Action</th>
+                        <th>Amount</th>
+                        <th>Reason</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="trans:${transList}">
+                        <td th:text="${{trans.transID}}">
+                            Number
+                        </td>
+                        <td th:text="${{trans.action}}">
+                            Name
+                        </td>
+                        <td th:text="${{trans.amt}}">
+                            City
+                        </td>
+                        <td th:text="${{trans.reason}}">
+                            State
+                        </td>
 
 
-    <div th:if="${transList!=null}">
-        <h1>Transaction List</h1>
-        <br/>
-        <h3 th:text="${'Balance: '+ {account.balance}}"></h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID #</th>
-                <th>Action</th>
-                <th>Amount</th>
-                <th>Reason</th>
+                    </tr>
+                    </tbody>
+                </table>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="trans:${transList}">
-                <td th:text="${{trans.transID}}">
-                    Number
-                </td>
-                <td th:text="${{trans.action}}">
-                    Name
-                </td>
-                <td th:text="${{trans.amt}}">
-                    City
-                </td>
-                <td th:text="${{trans.reason}}">
-                    State
-                </td>
-
-
-            </tr>
-            </tbody>
-        </table>
-
+            </div>
+        </div>
     </div>
 
 </div>

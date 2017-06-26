@@ -14,25 +14,28 @@
 <br/>
 <br/>
 <br/>
-<div class="container">
+<div class="wrapper">
+    <div class="section">
+        <div class="container">
 
+            <form action="#" th:action="@{/deposit}" th:object="${transaction}" method="post">
 
-    <form action="#" th:action="@{/deposit}" th:object="${transaction}" method="post">
+                <div class="form-group">
+                    <label for="amt">Enter Amount to Deposit</label>
+                    <input type="text" class="form-control" th:field="*{amt}" id="amt" placeholder="Amount"/>
+                    <p class="text-danger"><span th:if="${#fields.hasErrors('amt')}" th:errors="*{amt}">Amt Error</span></p>
+                </div>
+                <div class="form-group">
+                    <label for="reason">Enter Reason for Transaction</label>
+                    <input type="text" class="form-control" th:field="*{reason}" id="reason" placeholder="Reason"/>
+                    <p class="text-danger"><span th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}">Content Error</span></p>
+                </div>
 
-        <div class="form-group">
-            <label for="amt">Enter Amount to Deposit</label>
-            <input type="text" class="form-control" th:field="*{amt}" id="amt" placeholder="Amount"/>
-            <p class="text-danger"><span th:if="${#fields.hasErrors('amt')}" th:errors="*{amt}">Amt Error</span></p>
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            </form>
+
         </div>
-        <div class="form-group">
-            <label for="reason">Enter Reason for Transaction</label>
-            <input type="text" class="form-control" th:field="*{reason}" id="reason" placeholder="Reason"/>
-            <p class="text-danger"><span th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}">Content Error</span></p>
-        </div>
-
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-
+    </div>
 
 </div>
 </body>
