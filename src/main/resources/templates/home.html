@@ -35,10 +35,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/deposit">Deposit</a></li>
-                <li><a href="/withdraw">Withdraw</a></li>
-                <li><a href="/transactions">Transaction History</a></li>
+                <li id="home" ><a href="/">Home</a></li>
+                <li id="deposit"><a href="/deposit">Deposit</a></li>
+                <li id="withdraw"><a href="/withdraw">Withdraw</a></li>
+                <li id="hist"><a href="/transactions">Transaction History</a></li>
+
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -73,15 +74,7 @@
 
     <!--  Get Shit Done Kit PRO Core javascript 	 -->
     <script src="assets/js/get-shit-done.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('li a').click(function(e) {
 
-                $('a').removeClass('active');
-                $(this).addClass('active');
-            });
-        });
-    </script>
 
     <!-- If you are using TypeKit.com uncomment this code otherwise you can delete it -->
     <!--
@@ -93,4 +86,16 @@
     <!-- <script src="assets/js/retina.min.js"></script> -->
 
 </th:block>
+<script>
+    var home = document.getElementById("home");
+    var deposit =document.getElementById("deposit");
+    var withdraw =document.getElementById("withdraw");
+    var hist =document.getElementById("hist");
+    home.className+="active";
+    deposit.className+="";
+    withdraw.className+="";
+    hist.className+="";
+
+
+</script>
 </html>
