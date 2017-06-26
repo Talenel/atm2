@@ -25,7 +25,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().anyRequest().authenticated();
+
+                .authorizeRequests()
+                    .antMatchers("/assets/**", "/bootstrap3/**").permitAll()
+                    .anyRequest().authenticated();
+
         http
                 .formLogin().failureUrl("/login?error")
                 .defaultSuccessUrl("/")
@@ -34,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                 .permitAll();
+
+
     }
     @Bean
     public DataSource dataSource(){
