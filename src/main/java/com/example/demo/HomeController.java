@@ -29,8 +29,9 @@ public class HomeController {
     }
 
     @GetMapping("/deposit")
-    public String depositForm(Model model) {
+    public String depositForm(Model model, Principal principal) {
         model.addAttribute("transaction", new Transaction());
+        model.addAttribute("acctList",accountRepository.findAllByUserName(principal.getName()));
         return "deposit";
     }
 
@@ -41,8 +42,9 @@ public class HomeController {
         if (bindingResult.hasErrors()) {
             return "deposit";
         }
-        Account account =accountRepository.findOneByUserName(principal.getName());
-        transaction.setAcctNum(account.getAcctNum());
+        //Account account =accountRepository.findOneByUserName(principal.getName());
+        //transaction.setAcctNum(account.getAcctNum());
+        Account account=accountRepository.findOneByAcctNum(transaction.getAcctNum());
         transaction.setAction("Deposit");
         account.depositFunds(transaction.getAmt());
         accountRepository.save(account);
@@ -51,8 +53,9 @@ public class HomeController {
     }
 
     @GetMapping("/withdraw")
-    public String withdrawForm(Model model) {
+    public String withdrawForm(Model model, Principal principal) {
         model.addAttribute("transaction", new Transaction());
+        model.addAttribute("acctList",accountRepository.findAllByUserName(principal.getName()));
         return "withdraw";
     }
 
@@ -65,8 +68,9 @@ public class HomeController {
         if (bindingResult.hasErrors()) {
             return "withdraw";
         }
-        Account account =accountRepository.findOneByUserName(principal.getName());
-        transaction.setAcctNum(account.getAcctNum());
+        //Account account =accountRepository.findOneByUserName(principal.getName());
+        //transaction.setAcctNum(account.getAcctNum());
+        Account account=accountRepository.findOneByAcctNum(transaction.getAcctNum());
         transaction.setAction("Withdrawal");
         account.depositFunds(transaction.getAmt());
         accountRepository.save(account);
@@ -79,13 +83,25 @@ public class HomeController {
 
 
 
-    @RequestMapping("/transactions")
+    @GetMapping("/transactions")
     public String transactionHistory(Model model, Principal principal)
     {
 
-        Account account =accountRepository.findOneByUserName(principal.getName());
+        Account account =accountRepository.findAllByUserName(principal.getName()).get(0);
         model.addAttribute("transList",atmRepository.findAllByAcctNum(account.getAcctNum()));
         model.addAttribute("account", account);
+        model.addAttribute("acctList",accountRepository.findAllByUserName(principal.getName()));
+
+        return "history";
+    }
+
+    @PostMapping("/transactions")
+    public String transactionSelected(@ModelAttribute Account account, Model model, Principal principal){
+        account=accountRepository.findOneByAcctNum(account.getAcctNum());
+        model.addAttribute("transList",atmRepository.findAllByAcctNum(account.getAcctNum()));
+        model.addAttribute("account", account);
+        model.addAttribute("acctList",accountRepository.findAllByUserName(principal.getName()));
+
 
         return "history";
     }

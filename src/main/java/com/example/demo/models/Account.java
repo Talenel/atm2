@@ -14,7 +14,6 @@ public class Account {
 
     @Id
     @NotNull
-    @Min(0)
     private int acctNum;
 
 

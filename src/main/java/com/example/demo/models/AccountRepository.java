@@ -23,6 +23,10 @@ public interface AccountRepository extends CrudRepository<Account, Integer> {
 
     public Account findOneByUserName(String userName);
 
+    public List<Account> findAllByUserName(String userName);
+
+    public Account findOneByAcctNum(Integer acctNum);
+
 
 
 }

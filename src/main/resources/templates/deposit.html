@@ -18,7 +18,19 @@
     <div class="section">
         <div class="container">
 
-            <form action="#" th:action="@{/deposit}" th:object="${transaction}" method="post">
+            <form action="#" th:action="@{/deposit}" th:object="${transaction}" method="post" id="depositForm">
+                <div class="form-group">
+                    <label for="select">Select Account Number:</label>
+                    <br/>
+                    <select name="huge" class="selectpicker" data-style="btn-info btn-fill btn-block" form="depositForm" th:field="*{acctNum}" id="select">
+                    <!--<option disabled selected> Choose city</option>-->
+                    <th:block th:each="acct:${acctList}">
+                        <option th:value="${acct.acctNum}" th:text="${{acct.acctNum}}">account# </option>
+                    </th:block>
+
+
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label for="amt">Enter Amount to Deposit</label>
